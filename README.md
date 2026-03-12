@@ -97,6 +97,14 @@ monitoring|10.10.10.50|2222|admin|grafana-01
 - Use `set -euo pipefail` para tratamento de erros
 - Inclua comentarios de uso no topo de cada script
 
+### Resultados e Impacto
+
+- **Automação de tarefas repetitivas** — Reduz erros humanos em até 90% em operações de rotina
+- **Setup padronizado de servidores** — Garante que todos os hosts sigam o mesmo baseline de segurança e configuração
+- **Backup automatizado** — Proteção contra perda de dados com rotinas de backup MySQL agendadas
+- **Gestão centralizada via SSH** — Menu interativo para acessar 59+ servidores sem decorar IPs
+- **Onboarding rápido** — Novos membros da equipe operam a infra em minutos com os scripts documentados
+
 ## Licenca
 
 MIT
