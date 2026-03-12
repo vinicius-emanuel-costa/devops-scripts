@@ -1,33 +1,33 @@
 # DevOps Scripts
 
-Collection of practical DevOps automation scripts for server setup, SSH management, monitoring, networking, and backups.
+Colecao de scripts praticos de automacao DevOps para configuracao de servidores, gerenciamento SSH, monitoramento, rede e backups.
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| [`ssh-menu/menu_ssh.sh`](ssh-menu/menu_ssh.sh) | Interactive SSH connection manager with whiptail TUI. Reads hosts from a config file, organizes by category, supports custom keys and ports. |
-| [`setup/setup-server.sh`](setup/setup-server.sh) | Initial server setup for Debian/Ubuntu: updates, essential tools, Docker, SSH hardening, UFW firewall, Fail2Ban. |
-| [`monitoring/install-node-exporter.sh`](monitoring/install-node-exporter.sh) | Install Prometheus Node Exporter as a systemd service with security hardening. |
-| [`networking/install-wireguard.sh`](networking/install-wireguard.sh) | Install and configure WireGuard VPN server with automatic peer management and QR code generation. |
-| [`backup/backup-mysql.sh`](backup/backup-mysql.sh) | MySQL/MariaDB backup with compression (gzip/zstd) and automatic rotation. |
+| Script | Descricao |
+|--------|-----------|
+| [`ssh-menu/menu_ssh.sh`](ssh-menu/menu_ssh.sh) | Gerenciador interativo de conexoes SSH com TUI whiptail. Le hosts de um arquivo de configuracao, organiza por categoria, suporta chaves e portas customizadas. |
+| [`setup/setup-server.sh`](setup/setup-server.sh) | Configuracao inicial de servidor para Debian/Ubuntu: atualizacoes, ferramentas essenciais, Docker, hardening SSH, firewall UFW, Fail2Ban. |
+| [`monitoring/install-node-exporter.sh`](monitoring/install-node-exporter.sh) | Instalacao do Prometheus Node Exporter como servico systemd com hardening de seguranca. |
+| [`networking/install-wireguard.sh`](networking/install-wireguard.sh) | Instalacao e configuracao de servidor WireGuard VPN com gerenciamento automatico de peers e geracao de QR code. |
+| [`backup/backup-mysql.sh`](backup/backup-mysql.sh) | Backup de MySQL/MariaDB com compressao (gzip/zstd) e rotacao automatica. |
 
-## Quick Start
+## Como Usar
 
 ### SSH Menu
 
 ```bash
-# Edit the hosts config file with your servers
+# Edite o arquivo de configuracao de hosts com seus servidores
 vim ssh-menu/hosts.conf
 
-# Run the menu
+# Execute o menu
 bash ssh-menu/menu_ssh.sh
 
-# Use a custom SSH key
+# Usar uma chave SSH customizada
 bash ssh-menu/menu_ssh.sh --key ~/.ssh/my_key
 ```
 
-### Server Setup
+### Configuracao de Servidor
 
 ```bash
 sudo bash setup/setup-server.sh \
@@ -46,57 +46,57 @@ sudo bash monitoring/install-node-exporter.sh --version 1.7.0 --port 9100
 ### WireGuard VPN
 
 ```bash
-# Install server
+# Instalar servidor
 sudo bash networking/install-wireguard.sh --port 51820
 
-# Add a client
+# Adicionar um cliente
 sudo bash /etc/wireguard/add-peer.sh my-laptop
 ```
 
-### MySQL Backup
+### Backup MySQL
 
 ```bash
-# Run manually
-MYSQL_PWD="your_password" bash backup/backup-mysql.sh --dir /backup/mysql --days 30
+# Executar manualmente
+MYSQL_PWD="sua_senha" bash backup/backup-mysql.sh --dir /backup/mysql --days 30
 
-# Or use a config file
+# Ou usar um arquivo de configuracao
 bash backup/backup-mysql.sh --config /etc/backup-mysql.conf
 
-# Cron (daily at 2am)
+# Cron (diario as 2h da manha)
 # 0 2 * * * /path/to/backup-mysql.sh --config /etc/backup-mysql.conf >> /var/log/mysql-backup.log 2>&1
 ```
 
-## Requirements
+## Requisitos
 
-- **OS**: Debian 11+ / Ubuntu 20.04+
+- **SO**: Debian 11+ / Ubuntu 20.04+
 - **Shell**: Bash 4+
-- **Tools**: `whiptail` (for SSH menu), `curl`, `jq`
-- **Privileges**: Most scripts require `sudo`
+- **Ferramentas**: `whiptail` (para o SSH menu), `curl`, `jq`
+- **Privilegios**: A maioria dos scripts requer `sudo`
 
-## Host Config Format (SSH Menu)
+## Formato de Configuracao de Hosts (SSH Menu)
 
 ```
-# CATEGORY|HOST|PORT|USER|DESCRIPTION
+# CATEGORIA|HOST|PORTA|USUARIO|DESCRICAO
 proxmox|192.168.1.10|22|admin|pve-node-01
 vm|10.10.10.11|2222|deploy|web-server-01
 monitoring|10.10.10.50|2222|admin|grafana-01
 ```
 
-## Contributing
+## Contribuicao
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-script`)
-3. Make your changes
-4. Test on a clean VM before submitting
-5. Submit a Pull Request
+1. Faca um fork do repositorio
+2. Crie uma branch de feature (`git checkout -b feature/novo-script`)
+3. Faca suas alteracoes
+4. Teste em uma VM limpa antes de enviar
+5. Envie um Pull Request
 
-**Guidelines:**
-- Never hardcode credentials, IPs, or hostnames
-- Use config files or environment variables for secrets
-- Add `--help` flag to all scripts
-- Use `set -euo pipefail` for error handling
-- Include usage comments at the top of each script
+**Diretrizes:**
+- Nunca coloque credenciais, IPs ou hostnames hardcoded
+- Use arquivos de configuracao ou variaveis de ambiente para secrets
+- Adicione flag `--help` em todos os scripts
+- Use `set -euo pipefail` para tratamento de erros
+- Inclua comentarios de uso no topo de cada script
 
-## License
+## Licenca
 
 MIT
