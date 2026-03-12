@@ -1,0 +1,30 @@
+# Secrets and credentials
+*.conf
+!ssh-menu/hosts.conf
+.env
+.env.*
+*.pem
+*.key
+id_*
+*.secret
+
+# Backup files
+*.sql
+*.sql.gz
+*.sql.zst
+*.tar.gz
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
